@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoAPI02.DomainServices\ProjetoAPI02.DomainServices.csproj" />
+    <ProjectReference Include="..\ProjetoAPI02.Domain\ProjetoAPI02.Domain.csproj" />
+    <ProjectReference Include="..\ProjetoAPI02.Repository\ProjetoAPI02.Repository.csproj" />
+    <ProjectReference Include="..\ProjetoAPI02.Security\ProjetoAPI02.Security.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Imagens\" />
+  </ItemGroup>
+
+
+</Project>
