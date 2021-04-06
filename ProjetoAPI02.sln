@@ -27,9 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Cryptography", "4.1 -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Security", "4.2 - Security", "{6C02B525-6C85-4A1E-8896-E49F7631F75E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAPI02.Cryptography", "ProjetoAPI02.Cryptography\ProjetoAPI02.Cryptography.csproj", "{A29B5C38-D80D-4EF2-99C1-2E9A5DB0F1A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoAPI02.Cryptography", "ProjetoAPI02.Cryptography\ProjetoAPI02.Cryptography.csproj", "{A29B5C38-D80D-4EF2-99C1-2E9A5DB0F1A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAPI02.Security", "ProjetoAPI02.Security\ProjetoAPI02.Security.csproj", "{45BC78AB-92ED-48ED-893E-A9AA0E151583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoAPI02.Security", "ProjetoAPI02.Security\ProjetoAPI02.Security.csproj", "{45BC78AB-92ED-48ED-893E-A9AA0E151583}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Testes", "5 - Testes", "{C8E47551-4703-4CCA-B140-E4C9DAF6BFC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoAPI02.Tests", "ProjetoAPI02.Tests\ProjetoAPI02.Tests.csproj", "{5CBF70CF-B001-4FB1-869C-C9114DB109DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,10 @@ Global
 		{45BC78AB-92ED-48ED-893E-A9AA0E151583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BC78AB-92ED-48ED-893E-A9AA0E151583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BC78AB-92ED-48ED-893E-A9AA0E151583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CBF70CF-B001-4FB1-869C-C9114DB109DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CBF70CF-B001-4FB1-869C-C9114DB109DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CBF70CF-B001-4FB1-869C-C9114DB109DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CBF70CF-B001-4FB1-869C-C9114DB109DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +84,7 @@ Global
 		{6C02B525-6C85-4A1E-8896-E49F7631F75E} = {9FFC351E-5E83-4D05-90F6-1D00EAFF196A}
 		{A29B5C38-D80D-4EF2-99C1-2E9A5DB0F1A3} = {E5CEC9D0-EE34-4AC2-9FB0-84F2933E55B5}
 		{45BC78AB-92ED-48ED-893E-A9AA0E151583} = {6C02B525-6C85-4A1E-8896-E49F7631F75E}
+		{5CBF70CF-B001-4FB1-869C-C9114DB109DF} = {C8E47551-4703-4CCA-B140-E4C9DAF6BFC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0744F68-19CA-45A4-B10A-AB799E4B2B73}
