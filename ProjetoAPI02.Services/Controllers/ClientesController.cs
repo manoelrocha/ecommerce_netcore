@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoAPI02.Domain.Entities;
 using ProjetoAPI02.DomainServices;
@@ -18,34 +19,21 @@ namespace ProjetoAPI02.Services.Controllers
     {
         [HttpPost]
         public IActionResult Post(ClientePostRequest request, 
-            [FromServices] ClienteDomainService clienteDomainService)
+            [FromServices] ClienteDomainService clienteDomainService,
+            [FromServices] IMapper mapper)
         {
             try
             {
-                var cliente = new Cliente
-                {
-                    IdCliente = Guid.NewGuid(),
-                    Nome = request.Nome,
-                    Email = request.Email,
-                    Cpf = request.Cpf,
-                    Senha = request.Senha
-                };
+                var cliente = mapper.Map<Cliente>(request);
+                cliente.IdCliente = Guid.NewGuid();
 
                 var enderecos = new List<Endereco>();
 
                 foreach (var item in request.Enderecos)
                 {
-                    enderecos.Add(new Endereco 
-                    { 
-                        IdEndereco = Guid.NewGuid(),
-                        Logradouro = item.Logradouro,
-                        Numero = item.Numero,
-                        Complemento = item.Complemento,
-                        Bairro = item.Bairro,
-                        Cidade = item.Cidade,
-                        Estado = item.Estado,
-                        Cep = item.Cep
-                    });
+                    var endereco = mapper.Map<Endereco>(item);
+                    endereco.IdEndereco = Guid.NewGuid();
+                    enderecos.Add(endereco); 
                 }
 
                 clienteDomainService.CadastrarCliente(cliente, enderecos);

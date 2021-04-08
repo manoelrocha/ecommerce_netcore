@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using ProjetoAPI02.Services.Models.Requests;
 using ProjetoAPI02.Tests.Configurations;
+using ProjetoAPI02.Tests.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -27,8 +28,12 @@ namespace ProjetoAPI02.Tests
             httpClient = configuration.CreateClient();
         }
 
+        /// <summary>
+        /// Teste que verifica se um cliente é cadastrado com sucesso na API
+        /// </summary>
+        /// <returns>Dados do Cliente cadastrado na API</returns>
         [Fact]
-        public async Task Clientes_Post_Return_OK()
+        public async Task<ClientePostRequest> Clientes_Post_Return_OK()
         {
             #region Dados do teste
 
@@ -74,8 +79,7 @@ namespace ProjetoAPI02.Tests
             #region Realizando a chamada para a API
 
             //criando a requisição (dados em formato JSON) que serão enviados para a API
-            var request = new StringContent(JsonConvert.SerializeObject(cliente),
-                Encoding.UTF8, "application/json");
+            var request = ContentHelper.CreateContent(cliente);
 
             //executando a chamada para a API (método assincrono -> THREAD)
             var response = await httpClient.PostAsync("api/clientes", request);
@@ -85,9 +89,14 @@ namespace ProjetoAPI02.Tests
                 .Should()
                 .Be(HttpStatusCode.OK);
 
+            return cliente;
+
             #endregion
         }
 
+        /// <summary>
+        /// Teste que verifica se API retorna erros de validação (400) para o cadastro do cliente
+        /// </summary>
         [Fact]
         public async Task Clientes_Post_Return_BadRequest()
         {
@@ -104,8 +113,7 @@ namespace ProjetoAPI02.Tests
             #region Realizando a chamada para a API
 
             //criando a requisição (dados em formato JSON) que serão enviados para a API
-            var request = new StringContent(JsonConvert.SerializeObject(cliente),
-                Encoding.UTF8, "application/json");
+            var request = ContentHelper.CreateContent(cliente);
 
             //executando a chamada para a API (método assincrono -> THREAD)
             var response = await httpClient.PostAsync("api/clientes", request);
@@ -117,13 +125,35 @@ namespace ProjetoAPI02.Tests
 
             #endregion
         }
+
+        /// <summary>
+        /// Teste que verifica se API retorna erros (403) para o cadastro de clientes com o mesmo email
+        /// </summary>
+        [Fact]
+        public async Task Clientes_Post_Return_Forbidden()
+        {
+            #region Dados do Teste
+
+            //cadastrar um cliente (executando o teste de cadastro com sucesso)
+            //nós temos aqui um objeto cliente contendo um registro ja cadastrado
+            var cliente = await Clientes_Post_Return_OK();
+
+            #endregion
+
+            #region Realizando a chamada para a API
+
+            //criando a requisição (dados em formato JSON) que serão enviados para a API
+            var request = ContentHelper.CreateContent(cliente);
+
+            //executando a chamada para a API (método assincrono -> THREAD)
+            var response = await httpClient.PostAsync("api/clientes", request);
+
+            //verificando se o retorno obtido da API foi STATUS FORBIDDEN (403)
+            response.StatusCode
+                .Should()
+                .Be(HttpStatusCode.Forbidden);
+
+            #endregion
+        }
     }
 }
-
-
-
-
-
-
-
-
